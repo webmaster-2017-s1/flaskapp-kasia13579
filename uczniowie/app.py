@@ -6,7 +6,6 @@ from modele import *
 from views import *
 import os
 
-# konfiguracja aplikacji
 app.config.update(dict(
     SECRET_KEY='bardzosekretnawartosc',
     DATABASE=os.path.join(app.root_path, baza_plik),
@@ -23,6 +22,7 @@ def before_request():
 def after_request(response):
     g.db.close()
     return response
+
 
 if __name__ == '__main__':
     app.run(debug=True)

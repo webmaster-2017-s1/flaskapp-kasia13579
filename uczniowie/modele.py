@@ -5,27 +5,27 @@
 
 from peewee import *
 
-baza_plik = 'modele.db'
+baza_plik = 'uczniowie.db'
 baza = SqliteDatabase(baza_plik)  # instancja bazy
 
-### MODELE #
 class BazaModel(Model):
     class Meta:
         database = baza
 
-class Klasa(BazaModel):
-
-    nazwa = CharField(null=False)
-    roknaboru = IntegerField(default=0)
-    rokmatury = IntegerField(default=0)
-    
 
 class Uczen(BazaModel):
+    imie = CharField(max_length=18)
+    nazwisko = CharField(max_length=18)
+    plec = IntegerField()
+    id_klasa = ForeignKey(klasa, related_name="uczniowie")
 
-    imie = CharField(null=False)
-    nazwisko = CharField(null=False)
-    plec = BooleanField()
-    klasa = ForeignKeyField(Klasa, related_name='uczniowie')
 
-baza.connect()
-baza.create_tables([Klasa, Uczen], True)
+class Klasa(BazaModel):
+    klasa = CharField(max_length=2) 
+    roknaboru = IntegerField(default=0)
+    rokmatury = IntegerField(default=0)
+
+
+if __name__ == '__main__':
+    import sys
+    sys.exit(main(sys.argv))
