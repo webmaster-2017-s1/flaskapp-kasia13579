@@ -6,6 +6,7 @@ from modele import *
 from views import *
 import os
 
+# konfiguracja aplikacji
 app.config.update(dict(
     SECRET_KEY='bardzosekretnawartosc',
     DATABASE=os.path.join(app.root_path, baza_plik),
