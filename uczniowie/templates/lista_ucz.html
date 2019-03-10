@@ -1,0 +1,14 @@
+{% extends "szablon.html" %}
+{% block tytul %}Lista uczniów{% endblock %}
+{% block h1 %}Lista uczniów{% endblock %}
+
+{% block tresc %}
+    <ol>
+    {% for u in uczniowie %}
+        <li>{{ u.imie }}
+            <a href="{{ url_for('edytuj_ucz', kid=u.id) }}" class="btn btn-secondary btn-sm"> Edytuj</a>
+            <a href="{{ url_for('usun_ucz', kid=u.id) }}" class="btn btn-danger btn-sm"> Usuń</a>
+        </li>
+    {% endfor %}
+    </ol>
+{% endblock %}
